@@ -65,8 +65,8 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.slice(7, -1);
 }
 
 
@@ -202,8 +202,20 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const innerWidth = width - 2;
+  const innerHeight = height - 2;
+  const repeatedPart = '─'.repeat(innerWidth);
+  const repeatedPartCenter = ' '.repeat(innerWidth);
+  const firstStr = `┌${repeatedPart}┐
+`;
+  const lastStr = `└${repeatedPart}┘
+`;
+  const innerStr = `│${repeatedPartCenter}│
+`;
+  const repeatedVertical = innerStr.repeat(innerHeight);
+  const result = firstStr + repeatedVertical + lastStr;
+  return result;
 }
 
 
