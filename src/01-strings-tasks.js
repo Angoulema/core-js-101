@@ -252,8 +252,8 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return (typeof value === 'string') ? true : value instanceof String;
 }
 
 
@@ -281,8 +281,39 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  // throw new Error('Not implemented');
+  let sign = value.slice(-1);
+  let part = value.slice(0, -1);
+  if (Number.isNaN(+part)) {
+    let first = part;
+    switch (first) {
+      case 'A': first = 0;
+        break;
+      case 'J': first = 10;
+        break;
+      case 'Q': first = 11;
+        break;
+      default: first = 12;
+        break;
+    }
+    part = first;
+  } else {
+    part = +part - 1;
+  }
+  let second = sign;
+  switch (second) {
+    case '♣': second = 0;
+      break;
+    case '♦': second = 13;
+      break;
+    case '♥': second = 26;
+      break;
+    default: second = 39;
+      break;
+  }
+  sign = second;
+  return +part + sign;
 }
 
 

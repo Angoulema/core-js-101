@@ -545,6 +545,8 @@ function distinct(arr) {
  */
 function group(/* array, keySelector, valueSelector */) {
   throw new Error('Not implemented');
+  //  const ourMap = new Map();
+  //  const mapKey = array.sort(keySelector).map(valueSelector);
 }
 
 
@@ -602,17 +604,16 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
-  //  в консоли работает, а тут нет
-/*  const len = Math.floor(arr.length / 2);
-  if (len > 1) {
+function swapHeadAndTail(arr) {
+  const len = Math.floor(arr.length / 2);
+  if (len > 0) {
     const firstHalf = arr.slice(0, len);
     const lastHalf = arr.slice(-len);
     arr.splice(0, len, ...lastHalf);
     arr.splice(-len, len, ...firstHalf);
   }
-  return arr; */
+
+  return arr;
 }
 
 
