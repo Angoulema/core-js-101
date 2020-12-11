@@ -199,6 +199,23 @@ function isInsideCircle(circle, point) {
  */
 function findFirstSingleChar(/* str */) {
   throw new Error('Not implemented');
+  /* const strArr = str.split('');
+  let result;
+  for (let i = 0; (i < strArr.length) && (result === undefined); i += 1) {
+    if (strArr.includes(strArr[i], i + 1)) {
+      while (strArr.includes(strArr[i])) {
+        const pos = strArr.indexOf(strArr[i]);
+        strArr.splice(pos, 1);
+        // и вот после этого он будет пропускать индексы...
+      }
+    } else {
+      result = strArr[i];
+    }
+  }
+  if (result === undefined) {
+    result = null;
+  }
+  return result; */
 }
 
 
@@ -307,8 +324,14 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  let str = String(num);
+  while (str.length > 1) {
+    const strArr = str.split('');
+    const strRed = strArr.reduce((acc, item) => acc + +item, 0);
+    str = String(strRed);
+  }
+  return +str;
 }
 
 
@@ -333,8 +356,27 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+//  throw new Error('Not implemented');
+  const openingBrackets = ['[', '{', '(', '<'];
+  const closingBrackets = [']', '}', ')', '>'];
+
+  let character;
+  let matchingOpeningBracket;
+  const stack = [];
+
+  for (let i = 0; i < str.length; i += 1) {
+    character = str[i];
+    if (closingBrackets.indexOf(character) > -1) {
+      matchingOpeningBracket = openingBrackets[closingBrackets.indexOf(character)];
+      if (stack.length === 0 || (stack.pop() !== matchingOpeningBracket)) {
+        return false;
+      }
+    } else {
+      stack.push(character);
+    }
+  }
+  return (stack.length === 0);
 }
 
 
