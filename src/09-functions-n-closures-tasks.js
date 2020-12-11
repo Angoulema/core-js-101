@@ -69,8 +69,7 @@ function getPolynom(...args) {
     if (!args) {
       result = null;
     } else if (args.length === 1) {
-      // eslint-disable-next-line prefer-destructuring
-      result = args[0];
+      [result] = args;
     } else if (args.length === 2) {
       result = x * args[0] + args[1];
     } else {

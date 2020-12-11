@@ -82,7 +82,8 @@ function getRegexForPitSpot() {
  */
 function getPasswordValidator(/* minLength */) {
   throw new Error('Not implemented');
-  // const reg = new RegExp(`(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z_ ]{${minLength},}`);
+  // eslint-disable-next-line no-useless-escape, prefer-template
+  // const reg = new RegExp('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z\s*]{' + minLength + ',}');
   // return reg;
 }
 
