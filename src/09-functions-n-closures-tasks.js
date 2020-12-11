@@ -101,7 +101,7 @@ function memoize(func) {
   function hash(args) {
     return JSON.stringify(args);
   }
-  return function (...args) {
+  return function that(...args) {
     const key = hash(args);
     let result;
     if (ourCache.has(key)) {
