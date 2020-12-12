@@ -212,25 +212,26 @@ function isInsideCircle(circle, point) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
-  /* const strArr = str.split('');
-  let result;
-  for (let i = 0; (i < strArr.length) && (result === undefined); i += 1) {
-    if (strArr.includes(strArr[i], i + 1)) {
-      while (strArr.includes(strArr[i])) {
-        const pos = strArr.indexOf(strArr[i]);
-        strArr.splice(pos, 1);
-        // и вот после этого он будет пропускать индексы...
-      }
+function findFirstSingleChar(str) {
+  let result = null;
+  const stack = [];
+  const myMap = {};
+  for (let i = 0; i < str.length; i += 1) {
+    const currentChar = str[i];
+    if (stack.indexOf(currentChar) > -1) {
+      myMap[currentChar] += 1;
     } else {
-      result = strArr[i];
+      stack.push(currentChar);
+      myMap[currentChar] = 1;
     }
   }
-  if (result === undefined) {
-    result = null;
+  for (let i = 0; i < stack.length; i += 1) {
+    if (myMap[stack[i]] === 1) {
+      result = stack[i];
+      break;
+    }
   }
-  return result; */
+  return result;
 }
 
 
