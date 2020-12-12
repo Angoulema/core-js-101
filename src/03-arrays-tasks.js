@@ -599,8 +599,20 @@ function selectMany(arr, childrenSelector) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  let result = [];
+  if (indexes.length === 1) {
+    const [ind] = indexes;
+    result = arr.filter((item, index) => index === ind);
+  } else if (indexes.length === 2) {
+    const resultS = arr.filter((item, index) => index === indexes[0]).flat();
+    result = resultS.filter((item, index) => index === indexes[1]);
+  } else {
+    result = arr.filter((item, index) => index === indexes[0]).flat()
+      .filter((item, index) => index === indexes[1]).flat()
+      .filter((item, index) => index === indexes[2]);
+  }
+  return result.join('');
 }
 
 

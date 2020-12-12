@@ -468,6 +468,34 @@ function toNaryString(num, n) {
  */
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
+/*  let result = '';
+  const path = {};
+  for (let i = 0; i < pathes.length; i += 1) {
+    path[`${i}`] = pathes[i].split('/');
+  }
+  if (pathes.length === 3) {
+    for (let i = 0; i < 3; i += 1) {
+      if ((path['0'][i] === path['1'][i]) && (path['1'][i] === path['2'][i])) {
+        if (path['0'][i] === '') {
+          result += '/';
+        } else {
+          result += path['0'][i];
+        }
+      }
+    }
+  } else {
+    for (let i = 0; i < path['0'].length; i += 1) {
+      if (path['0'][i] === path['1'][i]) {
+        if (path['0'][i] === '') {
+          result += '/';
+        } else {
+          result += path['0'][i];
+        }
+      }
+    }
+  }
+  return result; */
+  // костыли не сработали)
 }
 
 
@@ -489,8 +517,31 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+//  throw new Error('Not implemented
+  const rowsM1 = m1.length;
+  const colsM1 = m1[0].length;
+  const rowsM2 = m2.length;
+  const colsM2 = m2[0].length;
+  const result = [];
+
+  if (colsM1 !== rowsM2) {
+    return false;
+  }
+
+  for (let i = 0; i < rowsM1; i += 1) {
+    result[i] = [];
+  }
+  for (let k = 0; k < colsM2; k += 1) {
+    for (let i = 0; i < rowsM1; i += 1) {
+      let t = 0;
+      for (let j = 0; j < rowsM2; j += 1) {
+        t += m1[i][j] * m2[j][k];
+      }
+      result[i][k] = t;
+    }
+  }
+  return result;
 }
 
 
