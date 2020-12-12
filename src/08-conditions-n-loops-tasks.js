@@ -141,10 +141,25 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const left1X = rect1.left;
+  const left1Y = rect1.top;
+  const right1X = rect1.left + rect1.width;
+  const right1Y = rect1.top + rect1.height;
+  const left2X = rect2.left;
+  const left2Y = rect2.top;
+  const right2X = rect2.left + rect2.width;
+  const right2Y = rect2.top + rect2.height;
+  let result;
+  if (left1X >= right2X || left2X >= right1X) {
+    result = false;
+  } else if (left1Y >= right2Y || left2Y >= right1Y) {
+    result = false;
+  } else {
+    result = true;
+  }
+  return result;
 }
-
 
 /**
  * Returns true, if point lies inside the circle, otherwise false.
@@ -306,8 +321,42 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const strArr = String(ccn).split('');
+  let filterInd;
+  let fiterSecond;
+
+  if (strArr.length % 2 !== 0) {
+    filterInd = strArr.filter((item, index) => index % 2 !== 0)
+      .map((item) => {
+        let newItem;
+        newItem = +item * 2;
+        if (newItem > 9) {
+          const itStr = String(newItem).split('');
+          newItem = +itStr[0] + +itStr[1];
+        }
+        return newItem;
+      })
+      .reduce((acc, item) => acc + item, 0);
+    fiterSecond = strArr.filter((item, index) => index % 2 === 0)
+      .reduce((acc, item) => acc + +item, 0);
+  } else {
+    filterInd = strArr.filter((item, index) => index % 2 === 0)
+      .map((item) => {
+        let newItem;
+        newItem = +item * 2;
+        if (newItem > 9) {
+          const itStr = String(newItem).split('');
+          newItem = +itStr[0] + +itStr[1];
+        }
+        return newItem;
+      })
+      .reduce((acc, item) => acc + item, 0);
+    fiterSecond = strArr.filter((item, index) => index % 2 !== 0)
+      .reduce((acc, item) => acc + +item, 0);
+  }
+  const result = filterInd + fiterSecond;
+  return result % 10 === 0;
 }
 
 /**
