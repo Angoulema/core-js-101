@@ -469,34 +469,31 @@ function toNaryString(num, n) {
  */
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
-/*  let result = '';
-  const path = {};
+  /* let strMin = pathes[0];
+  const array = [];
+  let isFound;
+  let result = '';
   for (let i = 0; i < pathes.length; i += 1) {
-    path[`${i}`] = pathes[i].split('/');
-  }
-  if (pathes.length === 3) {
-    for (let i = 0; i < 3; i += 1) {
-      if ((path['0'][i] === path['1'][i]) && (path['1'][i] === path['2'][i])) {
-        if (path['0'][i] === '') {
-          result += '/';
-        } else {
-          result += path['0'][i];
-        }
-      }
+    if (strMin.length < pathes[i].length) {
+      array.push(pathes[i]);
+    } else {
+      array.push(strMin);
+      strMin = pathes[i];
     }
-  } else {
-    for (let i = 0; i < path['0'].length; i += 1) {
-      if (path['0'][i] === path['1'][i]) {
-        if (path['0'][i] === '') {
-          result += '/';
-        } else {
-          result += path['0'][i];
+  }
+  for (let l = strMin.length; l > 0; l -= 1) {
+    for (let p = 0; p <= strMin.length - l; p += 1) {
+      const subStr = strMin.slice(p, p + l);
+      isFound = true;
+      for (let i = 0; i < array.length; i += 1) {
+        if (array[i].indexOf(subStr) < 0) {
+          isFound = false;
         }
       }
+      if (isFound) result = subStr;
     }
   }
   return result; */
-  // костыли не сработали)
 }
 
 
